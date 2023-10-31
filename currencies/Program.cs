@@ -4,26 +4,31 @@ Console.WriteLine("Witamy w programie do analizy kursu walut");
 Console.WriteLine("========================================");
 Console.WriteLine();
 
-Console.WriteLine("Wciśnij 'C' by kontynuować wpisywanie danych do pliku lub przejdź dalej");
-
 var currencyInFile = new CurrencyInFile();
 bool firstStepInMemory = false;
 
-if (Console.ReadLine().ToUpper() != "C")
+Console.WriteLine("Wybierz metodę przechowywania danych");
+Console.WriteLine("Pamięć wciśnij 'P' lub dowolny klawisz dla zapisu na dysku");
+string firstStep = Console.ReadLine().ToUpper();
+
+if (firstStep == "P")
 {
-    Console.WriteLine("Wybierz metodę przechowywania danych");
-    Console.WriteLine("Pamięć wciśnij 'P' lub dowolny klawisz dla zapisu na dysku");
-    string firstStep = Console.ReadLine().ToUpper();
-
-    if (firstStep == "P")
-    {
-        firstStepInMemory = true;
-    }
-
+    firstStepInMemory = true;
     WhileCurrencies(firstStepInMemory);
 }
 else
 {
+    Console.WriteLine("Jeżeli chcesz skasować pliki z danymi wybierz 'R'");
+    string deleteFile = Console.ReadLine();
+
+    if (deleteFile.ToUpper() == "R")
+    {
+        if (File.Exists("euro.txt")) { currencyInFile.EuroFileDelete(); }
+
+        if (File.Exists("dollar.txt")) { currencyInFile.DollarFileDelete(); }
+
+        if (File.Exists("pound.txt")) { currencyInFile.PoundFileDelete(); }
+    }
     WhileCurrencies(firstStepInMemory);
 }
 
@@ -206,4 +211,3 @@ void WhileCurrencies(bool choice)
         }
     }
 }
-
