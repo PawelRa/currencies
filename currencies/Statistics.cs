@@ -18,7 +18,7 @@ namespace currencies
         {
             get
             {
-                return this.Sum / this.Count;
+                return Math.Round(this.Sum / this.Count, 4);
             }
         }
 
