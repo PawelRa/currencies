@@ -6,9 +6,7 @@
         private List<double> dollar = new List<double>(); //USD
         private List<double> szterlingPound = new List<double>(); //GBP
 
-        public CurrencyInMemory()
-        {
-        }
+        public CurrencyInMemory() { }
 
         public override void AddCurrency(string name, double exchangeRate)
         {
@@ -71,11 +69,13 @@
             {
                 Console.WriteLine(item);
             }
+
             Console.WriteLine("dolar");
             foreach (var item in dollar)
             {
                 Console.WriteLine(item);
             }
+
             Console.WriteLine("Funt");
             foreach (var item in szterlingPound)
             {

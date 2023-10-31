@@ -24,9 +24,7 @@ if (Console.ReadLine().ToUpper() != "C")
 }
 else
 {
-    //TODO: kontynuacja zapisu do pliku 
     WhileCurrencies(firstStepInMemory);
-
 }
 
 void WhileCurrencies(bool choice)
@@ -175,6 +173,17 @@ void WhileCurrencies(bool choice)
         var dollarStatistics = currencyInFile.GetDollarStatistics();
         var poundStatistics = currencyInFile.GetPoundStatistics();
 
+        Console.WriteLine("Jeżeli chcesz skasować pliki z danymi wybierz 'R'");
+        string deleteFile = Console.ReadLine();
+        if (deleteFile.ToUpper() == "R")
+        {
+            if (File.Exists("euro.txt")) { currencyInFile.EuroFileDelete(); }
+
+            if (File.Exists("dollar.txt")) { currencyInFile.DollarFileDelete(); }
+
+            if (File.Exists("pound.txt")) { currencyInFile.PoundFileDelete(); }
+        }
+
         Console.WriteLine();
         if (euroStatistics.Count >= 1)
         {
@@ -197,40 +206,4 @@ void WhileCurrencies(bool choice)
         }
     }
 }
-
-
-
-
-
-//currencies.AddCurrency("EUR", 4.58);
-//currencies.AddCurrency("EUR", 4.6);
-//currencies.AddCurrency("EUR", 4.7);
-//currencies.AddCurrency("USD", 1);
-//currencies.AddCurrency("USD", 2);
-//currencies.AddCurrency("GBP", 1);
-//currencies.AddCurrency("Gbp", 4);
-
-//currencies.sum();
-
-//var statistics = currencies.GetEuroStatistics();
-
-//Console.WriteLine(statistics.Min);
-//Console.WriteLine(statistics.Count);
-
-
-//var testpliku = new CurrencyInFile();
-
-
-//testpliku.AddCurrency("EUR", 4.58);
-//testpliku.AddCurrency("EUR", 4.6);
-//testpliku.AddCurrency("EUR", 4.7);
-//testpliku.AddCurrency("usd", 1.1);
-//testpliku.AddCurrency("UsD", 2.1);
-//testpliku.AddCurrency("UsD", 3.1);
-//testpliku.AddCurrency("GBP", 1);
-//testpliku.AddCurrency("Gbp", 4);
-
-//var statystykiPliku = testpliku.GetDollarStatistics();
-
-//Console.WriteLine($"srednia pliku = {statystykiPliku.Average}");
 

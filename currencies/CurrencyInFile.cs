@@ -97,10 +97,12 @@
         {
             File.Delete(euroFile);
         }
+
         public void DollarFileDelete()
         {
             File.Delete(dollarFile);
         }
+
         public void PoundFileDelete()
         {
             File.Delete(englishPoundFile);

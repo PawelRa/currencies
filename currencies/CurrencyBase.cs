@@ -1,12 +1,8 @@
-﻿using System.Xml.Linq;
-
-namespace currencies
+﻿namespace currencies
 {
     public abstract class CurrencyBase : ICurrency
     {
-        protected CurrencyBase()
-        {
-        }
+        protected CurrencyBase() { }
 
         public abstract void AddCurrency(string name, double exchangeRate);
 

@@ -1,6 +1,4 @@
-﻿//do zrobienia
-
-namespace currencies
+﻿namespace currencies
 {
     public class Statistics
     {
@@ -30,7 +28,6 @@ namespace currencies
             this.Sum = 0;
             this.Count = 0;
         }
-
 
         public void AddCurrency(double exchangeRate)
         {
