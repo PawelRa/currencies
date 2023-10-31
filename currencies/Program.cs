@@ -20,3 +20,15 @@ var statistics = currencies.GetEuroStatistics();
 
 Console.WriteLine(statistics.Min);
 Console.WriteLine(statistics.Count);
+
+
+var testpliku = new CurrencyInFile();
+
+
+testpliku.AddCurrency("EUR", 4.58);
+testpliku.AddCurrency("EUR", 4.6);
+testpliku.AddCurrency("EUR", 4.7);
+testpliku.AddCurrency("usd", 1);
+testpliku.AddCurrency("UsD", 2);
+testpliku.AddCurrency("GBP", 1);
+testpliku.AddCurrency("Gbp", 4);
