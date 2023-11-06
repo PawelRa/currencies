@@ -2,14 +2,22 @@
 {
     public abstract class CurrencyBase : ICurrency
     {
-        protected CurrencyBase() { }
+        protected CurrencyBase(string name)
+        {
+            if ((name == "USD") || (name == "EUR") || (name == "GBP"))
+            {
+                this.Name = name;
+            }
+            else
+            {
+                Console.WriteLine("Wrong currency");
+            }
+        }
 
-        public abstract void AddCurrency(string name, double exchangeRate);
+        public string Name { get; private set; }
 
-        public abstract Statistics GetDollarStatistics();
+        public abstract void AddCurrency(double exchangeRate);
 
-        public abstract Statistics GetEuroStatistics();
-
-        public abstract Statistics GetPoundStatistics();
+        public abstract Statistics GetStatistics();
     }
 }

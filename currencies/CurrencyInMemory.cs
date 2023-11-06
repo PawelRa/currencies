@@ -2,86 +2,29 @@
 {
     public class CurrencyInMemory : CurrencyBase
     {
-        private List<double> euro = new List<double>(); //EUR
-        private List<double> dollar = new List<double>(); //USD
-        private List<double> szterlingPound = new List<double>(); //GBP
+        private List<double> data = new List<double>();
 
-        public CurrencyInMemory() { }
+        public CurrencyInMemory(string name) : base(name) { }
 
-        public override void AddCurrency(string name, double exchangeRate)
+        public override void AddCurrency(double exchangeRate)
         {
-            switch (name.ToUpper())
+            try
             {
-                case "EUR":
-                    this.euro.Add(exchangeRate);
-                    break;
-                case "USD":
-                    this.dollar.Add(exchangeRate);
-                    break;
-                case "GBP":
-                    this.szterlingPound.Add(exchangeRate);
-                    break;
-                default:
-                    throw new Exception("Incorrect name");
+                data.Add(Convert.ToDouble(exchangeRate));
             }
+            catch { Console.WriteLine("Zła wartość"); }
         }
 
-        public override Statistics GetDollarStatistics()
+        public override Statistics GetStatistics()
         {
-            var statistics = new Statistics("USD");
+            var statistics = new Statistics(this.Name);
 
-            foreach (var item in this.dollar)
+            foreach (var item in data)
             {
                 statistics.AddCurrency(item);
             }
 
             return statistics;
         }
-
-        public override Statistics GetEuroStatistics()
-        {
-            var statistics = new Statistics("EUR");
-
-            foreach (var item in this.euro)
-            {
-                statistics.AddCurrency(item);
-            }
-
-            return statistics;
-        }
-
-        public override Statistics GetPoundStatistics()
-        {
-            var statistics = new Statistics("GBP");
-
-            foreach (var item in this.szterlingPound)
-            {
-                statistics.AddCurrency(item);
-            }
-
-            return statistics;
-        }
-
-        public void sum()
-        {
-            Console.WriteLine("euro");
-            foreach (var item in euro)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine("dolar");
-            foreach (var item in dollar)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine("Funt");
-            foreach (var item in szterlingPound)
-            {
-                Console.WriteLine(item);
-            }
-        }
-
     }
 }

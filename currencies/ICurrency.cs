@@ -2,10 +2,10 @@
 {
     internal interface ICurrency
     {
-        void AddCurrency(string name, double exchangeRate);
+        string Name { get; }
 
-        Statistics GetEuroStatistics();
-        Statistics GetDollarStatistics();
-        Statistics GetPoundStatistics();
+        void AddCurrency(double exchangeRate);
+
+        Statistics GetStatistics();
     }
 }
