@@ -17,19 +17,16 @@ CurrencyInFile poundInFile = new CurrencyInFile("GBP");
 
 if (firstStep == "P")
 {
-    //TODO: obsługa zapisu w pamięci
     firstStepInMemory = true;
     WhileCurrencies(firstStepInMemory);
 }
 else
 {
-    //TODO: Obsługa zapisu do plików
     Console.WriteLine("Jeżeli chcesz skasować pliki z danymi wybierz 'R'");
     string deleteFile = Console.ReadLine();
 
     if (deleteFile.ToUpper() == "R")
     {
-        //TODO: obsługa kasowania pliku
         euroInFile.DeleteFile();
         dollarInFile.DeleteFile();
         poundInFile.DeleteFile();
@@ -37,13 +34,10 @@ else
     WhileCurrencies(firstStepInMemory);
 }
 
-
-
 void WhileCurrencies(bool choice)
 {
     if (choice)
     {
-        //TODO: Obsługa programu w pamięci
         CurrencyInMemory euroCurrencies = new CurrencyInMemory("EUR");
         CurrencyInMemory dollarCurrencies = new CurrencyInMemory("USD");
         CurrencyInMemory poundCurrencies = new CurrencyInMemory("GBP");
@@ -97,36 +91,11 @@ void WhileCurrencies(bool choice)
             }
         }
 
-        var euroStatistics = euroCurrencies.GetStatistics();
-        var dollarStatistics = dollarCurrencies.GetStatistics();
-        var poundStatistics = poundCurrencies.GetStatistics();
-
-        Console.WriteLine("Koniec programu");
-        Console.WriteLine();
-
-        if (euroStatistics.Count >= 1)
-        {
-            Console.WriteLine("Podsumowanie kursów EURO");
-            Console.WriteLine($"Minimalny kurs = {euroStatistics.Min}, maksymalny kurs = {euroStatistics.Max}, średni kurs = {euroStatistics.Average}");
-            Console.WriteLine();
-        }
-
-        if (dollarStatistics.Count >= 1)
-        {
-            Console.WriteLine("Podsumowanie kursów USD");
-            Console.WriteLine($"Minimalny kurs = {dollarStatistics.Min}, maksymalny kurs = {dollarStatistics.Max}, średni kurs = {dollarStatistics.Average}");
-            Console.WriteLine();
-        }
-
-        if (poundStatistics.Count >= 1)
-        {
-            Console.WriteLine("Podsumowanie kursów funta brytyjskiego");
-            Console.WriteLine($"Minimalny kurs = {poundStatistics.Min}, maksymalny kurs = {poundStatistics.Max}, średni kurs = {poundStatistics.Average}");
-        }
+        var result = new PrintStatistics(euroCurrencies.GetStatistics(), dollarCurrencies.GetStatistics(), poundCurrencies.GetStatistics());
+        result.printStat();
     }
     else
     {
-        //TODO: Obsługa programu na plikach
         while (continueProgram)
         {
             Console.WriteLine("Wybierz walutę");
@@ -176,32 +145,7 @@ void WhileCurrencies(bool choice)
             }
         }
 
-        var euroStatistics = euroInFile.GetStatistics();
-        var dollarStatistics = dollarInFile.GetStatistics();
-        var poundStatistics = poundInFile.GetStatistics();
-
-        Console.WriteLine("Koniec programu");
-        Console.WriteLine();
-
-        if (euroStatistics.Count >= 1)
-        {
-            Console.WriteLine("Podsumowanie kursów EURO");
-            Console.WriteLine($"Minimalny kurs = {euroStatistics.Min}, maksymalny kurs = {euroStatistics.Max}, średni kurs = {euroStatistics.Average}");
-            Console.WriteLine();
-        }
-
-        if (dollarStatistics.Count >= 1)
-        {
-            Console.WriteLine("Podsumowanie kursów USD");
-            Console.WriteLine($"Minimalny kurs = {dollarStatistics.Min}, maksymalny kurs = {dollarStatistics.Max}, średni kurs = {dollarStatistics.Average}");
-            Console.WriteLine();
-        }
-
-        if (poundStatistics.Count >= 1)
-        {
-            Console.WriteLine("Podsumowanie kursów funta brytyjskiego");
-            Console.WriteLine($"Minimalny kurs = {poundStatistics.Min}, maksymalny kurs = {poundStatistics.Max}, średni kurs = {poundStatistics.Average}");
-        }
+        var result = new PrintStatistics(euroInFile.GetStatistics(), dollarInFile.GetStatistics(), poundInFile.GetStatistics());
+        result.printStat();
     }
 }
-
